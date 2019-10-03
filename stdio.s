@@ -23,23 +23,21 @@
 	prints(string0)
 .end_macro
 
-.macro printI(%int)
-	.data newline: .asciiz "\n"
-	.text
+.macro printI(%int, %delimeter)
 	push($v0)
 	push($a0)
 	move $a0, %int
 	li $v0, 1
 	syscall
-	prints(newline)
+	printss(%delimeter)
 	pull($a0)
 	pull($v0)
 .end_macro
 
-.macro printIi(%num)
+.macro printIi(%num, %delimeter)
 	push($a0)
 	li $a0, %num
-	printI($a0)
+	printI($a0, %delimeter)
 	pull($a0)
 .end_macro
 
